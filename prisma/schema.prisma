@@ -9,15 +9,18 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-model Customer {
+model Account {
   id        String   @id @default(uuid())
+  accountId String
   name      String
-  email     String?
+  currency  String?
+  type      String?
+  balance   Int?
   source    String // e.g., "quikbook"
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@unique([email, source])
+  @@unique([accountId, source])
 }
 
 model Employee {
