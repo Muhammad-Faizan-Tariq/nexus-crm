@@ -157,7 +157,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../../prisma",
@@ -167,16 +167,17 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://postgres.zabjmnbisgzebappamxf:PanjtanPak5@aws-0-ap-south-1.pooler.supabase.com:5432/postgres"
+        "value": null
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel Customer {\n  id        String   @id @default(uuid())\n  name      String\n  email     String?\n  source    String // e.g., \"quikbook\"\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([email, source])\n}\n\nmodel Employee {\n  id        String   @id @default(uuid())\n  name      String\n  email     String?\n  role      String?\n  source    String // e.g., \"hubstaff\"\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([email, source])\n}\n",
-  "inlineSchemaHash": "a8087ffc9cf0596b7ff09e9603a1ca4f56ccedc843ad51c8d0db8065ef3a11d8",
+  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider  = \"postgresql\"\n  url       = env(\"DATABASE_URL\")\n  directUrl = env(\"DIRECT_URL\")\n}\n\nmodel Customer {\n  id        String   @id @default(uuid())\n  name      String\n  email     String?\n  source    String // e.g., \"quikbook\"\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([email, source])\n}\n\nmodel Employee {\n  id        String   @id @default(uuid())\n  name      String\n  email     String?\n  role      String?\n  source    String // e.g., \"hubstaff\"\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n\n  @@unique([email, source])\n}\n",
+  "inlineSchemaHash": "10b9f922665693dc47b098f200d81d50bd3957efb1c92b9e8f67e7297f324be2",
   "copyEngine": true
 }
 config.dirname = '/'
